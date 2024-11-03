@@ -107,7 +107,8 @@ https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/53.jpg
 54. Добавление ветки наблюдения
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/54.jpg
 55. Чистые репозитории
-https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/56.jpg
+https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/55.jpg
 56. Добавление удаленного репозитория и  Отправка изменений
-https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/57.jpg
+https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/56.jpg
 57. Подтягивание общих изменений
+https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/57.jpg
