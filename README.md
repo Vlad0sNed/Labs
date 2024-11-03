@@ -1,17 +1,15 @@
 1. Установка имени и электронной почты
-
-
+https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/1.jpg
 2. Имя ветки по умолчанию
-
-
+https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/2.jpg
 3. Корректная обработка окончаний строк
-
+https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/3.jpg
 4. Создайте страницу «Hello, World»
-
+https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/4.jpg
 5. Создайте репозиторий
-
+https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/5.jpg
 6. Добавьте страницу в репозиторий
-
+https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/6.jpg
 7. Проверьте состояние репозитория
 
 8. Проверьте состояние
