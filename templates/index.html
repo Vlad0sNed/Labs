@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>График GPS</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        #graph {
+            width: 100%;
+            height: 600px;
+        }
+
+        .form-group {
+            display: flex; /* Используем flexbox */
+            justify-content: flex-start; /* Устанавливаем элементы слева */
+            align-items: center; /* Центрируем элементы по вертикали */
+            margin-bottom: 10px; /* Отступ между группами */
+        }
+
+        .form-group label {
+            margin-right: 5px; /* Уменьшаем отступ между меткой и полем ввода */
+            width: 250px; /* Фиксированная ширина для меток */
+        }
+
+        .form-group input {
+            width: 100px; /* Уменьшаем ширину поля ввода */
+            margin-left: 0; /* Убираем левый отступ, чтобы сдвинуть поле ввода влево */
+            flex-shrink: 0; /* Запрещаем сжимать поле ввода */
+        }
+    </style>
+</head>
+<body>
+    <h1>График GPS</h1>
+
+    <div id="graph"></div>
+
+    <!-- Форма для ввода параметров -->
+    <div>
+        <div class="form-group">
+            <label for="emulationZoneSize">Розмір зони емуляції (км):</label>
+            <input type="number" id="emulationZoneSize" value="200">
+        </div>
+        <div class="form-group">
+            <label for="messageFrequency">Частота передачі повідомлень (повідомлень/сек):</label>
+            <input type="number" id="messageFrequency" value="1">
+        </div>
+        <div class="form-group">
+            <label for="satelliteSpeed">Швидкість супутника (км/год):</label>
+            <input type="number" id="satelliteSpeed" value="100">
+        </div>
+        <div class="form-group">
+            <label for="objectSpeed">Швидкість об'єкта (км/год):</label>
+            <input type="number" id="objectSpeed" value="10">
+        </div>
+        <button onclick="sendConfig()">Отправить параметры</button>
+    </div>
+
+    <script>
+        function fetchData() {
+            fetch('http://localhost:5000/data') // URL для получения данных
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Ошибка получения данных");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status && data.status === "error") {
+                        console.error(data.message);
+                        return;
+                    }
+                    drawGraph(data); // Отрисовка графика
+                })
+                .catch(error => console.error('Ошибка:', error));
+        }
+
+        function sendConfig() {
+            // Получаем значения параметров из полей ввода
+            const emulationZoneSize = document.getElementById('emulationZoneSize').value;
+            const messageFrequency = document.getElementById('messageFrequency').value;
+            const satelliteSpeed = document.getElementById('satelliteSpeed').value;
+            const objectSpeed = document.getElementById('objectSpeed').value;
+
+            fetch('http://localhost:4001/config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    emulationZoneSize: emulationZoneSize,
+                    messageFrequency: messageFrequency,
+                    satelliteSpeed: satelliteSpeed,
+                    objectSpeed: objectSpeed
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка отправки конфигурации');
+                }
+                return response.json();
+            })
+            .then(data => console.log('Конфигурация отправлена:', data))
+            .catch(error => console.error('Ошибка отправки конфигурации:', error));
+        }
+
+        function drawGraph(data) {
+            const traces = data.data.map(point => ({
+                x: [point.x],
+                y: [point.y],
+                mode: 'markers+text',
+                text: [`Спутник ${point.id.slice(-4)}`], // Отображаем последние 4 цифры id
+                textposition: "top center",
+                marker: { color: 'green', size: 15 }
+            }));
+
+            // Проверяем наличие вычисленных координат
+            if (data.calculated) {
+                const calculatedPoint = {
+                    x: [data.calculated.x],
+                    y: [data.calculated.y],
+                    mode: 'markers+text',
+                    text: ['Вычисленная точка'],
+                    textposition: 'top center',
+                    marker: { color: 'red', size: 20 },
+                    name: 'Вычисленная точка'
+                };
+                traces.push(calculatedPoint);
+            }
+
+            const layout = {
+                title: 'График GPS',
+                xaxis: { title: 'X', range: [0, 130] },
+                yaxis: { title: 'Y', range: [0, 130] },
+                showlegend: true,
+                width: 1500,   // Ширина графика
+                height: 600    // Высота графика
+            };
+
+            Plotly.newPlot('graph', traces, layout); // Отрисовка графика
+        }
+
+        // Запускаем функцию fetchData через 5 секунд
+        setInterval(fetchData, 300);
+    </script>
+</body>
+</html>
