@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Polar Plot</title>
+    <!-- Подключение Plotly.js -->
+    <script src='https://cdn.plot.ly/plotly-2.35.2.min.js'></script>
+</head>
+
+<body>
+    <div id='myDiv'><!-- Полярный график будет нарисован здесь --></div>
+
+    <style>
+    .centered {
+        text-align: center;
+    }
+
+    .centered label, .centered input {
+        display: block; /* Установить каждый элемент на новой строке */
+        margin: 10px auto; /* Автоматические отступы слева и справа */
+    }
+</style>
+
+<div class="centered">
+    <h3>Изменить параметры радара</h3>
+
+    <label for="measurementsPerRotation">Measurements Per Rotation (рази):</label>
+    <input type="number" id="measurementsPerRotation" value="360">
+
+    <label for="rotationSpeed">Rotation Speed (об/мин):</label>
+    <input type="number" id="rotationSpeed" value="60">
+
+    <label for="beamWidth">Beam Width (градус):</label>
+    <input type="number" id="beamWidth" value="1">
+
+    <label for="numberOfTargets">Number Of Targets:</label>
+    <input type="number" id="numberOfTargets" value="1">
+
+    <label for="targetSpeed">Target Speed (км/год):</label>
+    <input type="number" id="targetSpeed" value="100">
+
+    <label for="emulationZoneSize">Emulation Zone Size (км):</label>
+    <input type="number" id="emulationZoneSize" value="200">
+
+    <button onclick="updateRadarConfig()">Отправить параметры</button>
+</div>
+
+
+</body>
+
+<script>
+    var ws = new WebSocket('ws://localhost:4000');
+
+    ws.onopen = function() {
+        console.log("Підключено до WebSocket сервера");
+    };
+
+    ws.onmessage = function(event) {
+        try {
+            var message = JSON.parse(event.data); // Предполагаем, что данные в формате JSON
+
+            // Проверяем наличие echoResponses и хотя бы одного ответа
+            if (message.echoResponses && message.echoResponses.length > 0) {
+                var pulseDuration = message.pulseDuration;
+                var scanAngle = message.scanAngle;
+                var echoResponses = message.echoResponses;
+
+                var time = echoResponses[0].time;
+                var power = echoResponses[0].power;
+                var radius = calculatedTheRadius(time);
+
+                console.log("pulseDuration:", pulseDuration);
+                console.log("scanAngle:", scanAngle);
+                console.log("time:", time);
+                console.log("power:", power);
+                console.log("radius:", radius);
+
+                updatePlot(pulseDuration, scanAngle, radius, power);
+            }
+        } catch (e) {
+            console.error("Ошибка при парсинге JSON:", e);
+        }
+    };
+
+    ws.onclose = function() {
+        console.log("З'єднання закрито");
+    };
+
+    // Функция для расчета радиуса (расстояние) на основе времени
+    function calculatedTheRadius(time) {
+        return (300000 * time) / 2 // Вычисляем радиус в километрах
+    }
+
+    // Функция для обновления графика
+    function updatePlot(pulseDuration, scanAngle, radius, power) {
+        var r = [radius];  // Радиус (в километрах)
+        var theta = [scanAngle]; // Угол (градусы)
+
+        // Определяем цвет и размер маркеров в зависимости от мощности сигнала
+        var markerColor, markerSize;
+
+        if (power > 0.5) {
+            markerColor = "red";  // Высокая мощность
+            markerSize = 25;
+        } else if (power > 0.05) {
+            markerColor = "orange";  // Средняя мощность
+            markerSize = 20;
+        } else if (power > 0.005) {
+            markerColor = "yellow";  // Низкая мощность
+            markerSize = 15;
+        } else {
+            markerColor = "blue";  // Очень низкая мощность
+            markerSize = 10;
+        }
+
+        var trace = {
+            type: "scatterpolargl",
+            r: r,
+            theta: theta,
+            mode: "markers",
+            marker: {
+                color: markerColor,
+                size: markerSize,
+                line: {
+                    color: "white"
+                },
+            },
+            cliponaxis: false
+        };
+
+        var layout = {
+            title: "Полярный график с данными расстояний и мощностей",
+            font: {
+                size: 15
+            },
+            polar: {
+                bgcolor: "grey",  // Фон полярной диаграммы
+                angularaxis: {
+                    tickwidth: 2,
+                    linewidth: 3,
+                    layer: "below traces"
+                },
+                radialaxis: {
+                    side: "counterclockwise",
+                    showline: true,
+                    linewidth: 2,
+                    tickwidth: 2,
+                    gridcolor: "white",
+                    gridwidth: 2,
+                    range: [0, 200], // Радиус от 0 до 200 км
+                    title: "Расстояние (км)" // Метка радиальной оси
+                }
+            },
+            paper_bgcolor: "white"
+        };
+
+        Plotly.newPlot('myDiv', [trace], layout);
+    }
+
+    // Функция для отправки PUT-запроса с новыми параметрами радара
+    function updateRadarConfig() {
+        var measurementsPerRotation = document.getElementById("measurementsPerRotation").value;
+        var rotationSpeed = document.getElementById("rotationSpeed").value;
+        var beamWidth = document.getElementById("beamWidth").value;
+        var numberOfTargets = document.getElementById("numberOfTargets").value;
+        var targetSpeed = document.getElementById("targetSpeed").value;
+        var emulationZoneSize = document.getElementById("emulationZoneSize").value;
+
+        var radarConfig = {
+            measurementsPerRotation: measurementsPerRotation,
+            rotationSpeed: rotationSpeed,
+            beamWidth: beamWidth,
+            numberOfTargets: numberOfTargets,
+            targetSpeed: targetSpeed,
+            emulationZoneSize: emulationZoneSize
+        };
+
+        fetch('http://localhost:4000/config', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(radarConfig)
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Ошибка при выполнении запроса: ' + response.statusText);
+            }
+        })
+        .then(data => {
+            console.log("Запрос выполнен успешно:", data);
+        })
+        .catch(error => {
+            console.error("Ошибка:", error);
+        });
+    }
+</script>
+</html>
