@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LORAN Visualization</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <style>
+        /* Общий стиль для страницы */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Стили для заголовков */
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #555;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        /* Стили для формы ввода */
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Стили для кнопки */
+        button {
+            background-color: #4CAF50; /* Зелёный цвет */
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Блок для формы */
+        .config-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 300px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* Контейнер для графика */
+        #plot {
+            width: 100%;
+            height: 100%;
+            max-width: 800px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Оценка положения приёмника LORAN</h1>
+
+    <!-- Форма для изменения конфигурации -->
+    <div class="config-container">
+        <h2>Настройки эмуляции</h2>
+        <label for="speed">Скорость объекта (км/ч):</label>
+        <input type="number" id="speed" placeholder="Введите скорость" value="100">
+        <button onclick="updateConfig()">Обновить скорость</button>
+    </div>
+
+    <div id="plot"></div>
+
+    <script>
+        const socket = io();
+
+        // Функция для обновления конфигурации через HTTP POST-запрос
+        function updateConfig() {
+            const speed = parseFloat(document.getElementById('speed').value);
+
+            // Отправка POST-запроса на сервер
+            fetch('http://localhost:4002/config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    objectSpeed: speed
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Ошибка сети");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert("Скорость успешно обновлена!");
+            })
+            .catch(error => {
+                console.error("Ошибка при обновлении скорости:", error);
+                alert("Не удалось обновить скорость. Попробуйте еще раз.");
+            });
+        }
+
+        // Обработка данных для визуализации
+        socket.on('new_data', (data) => {
+            const { x, y } = data;
+
+            // Координаты базовых станций
+            const stations = [
+                { x: 0, y: 0, name: 'Станция 1' },
+                { x: 100000, y: 0, name: 'Станция 2' },
+                { x: 0, y: 100000, name: 'Станция 3' }
+            ];
+
+            // Трассы для базовых станций
+            const traceStations = stations.map(station => ({
+                x: [station.x],
+                y: [station.y],
+                mode: 'markers',
+                name: station.name,
+                marker: { size: 10, color: 'blue' }
+            }));
+
+            // Трасса для объекта
+            const traceReceiver = {
+                x: [x],
+                y: [y],
+                mode: 'markers',
+                name: 'Приёмник',
+                marker: { size: 12, color: 'red' }
+            };
+
+            // Объединение всех данных
+            const plotData = [...traceStations, traceReceiver];
+
+            const layout = {
+                title: 'Оценка положения приёмника',
+                xaxis: { title: 'X Координата' },
+                yaxis: { title: 'Y Координата' },
+                showlegend: true,
+                width: 800,
+                height: 600
+            };
+
+            // Обновление графика
+            Plotly.newPlot('plot', plotData, layout);
+        });
+    </script>
+</body>
+</html>
