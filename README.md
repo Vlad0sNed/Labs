@@ -22,7 +22,7 @@ https://github.com/Vlad0sNed/Labs/blob/Lab_2_Docker/Screenshots/8.jpg
 
 https://github.com/Vlad0sNed/Labs/blob/Lab_2_Docker/Screenshots/14.jpg
 
-ось що змінилося після зміни:screenshots/photo_11_2024-09-09_21-49-46.jpg
+ось що змінилося після зміни:https://github.com/Vlad0sNed/Labs/blob/Lab_2_Docker/Screenshots/11.jpg
 
 https://github.com/Vlad0sNed/Labs/blob/Lab_2_Docker/Screenshots/7.jpg
 
