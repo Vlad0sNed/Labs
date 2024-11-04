@@ -1,114 +1,170 @@
-1. Установка имени и электронной почты
+Налаштування імені та електронної пошти
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/1.jpg
-2. Имя ветки по умолчанию
+
+Ім'я гілки за замовчуванням
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/2.jpg
-3. Корректная обработка окончаний строк
+
+Коректна обробка закінчень рядків
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/3.jpg
-4. Создайте страницу «Hello, World»
+
+Створіть сторінку «Hello, World»
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/4.jpg
-5. Создайте репозиторий
+
+Створіть репозиторій
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/5.jpg
-6. Добавьте страницу в репозиторий
+
+Додайте сторінку в репозиторій
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/6.jpg
-7. Проверьте состояние репозитория
+
+Перевірте стан репозиторію
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/7.jpg
-8. Проверьте состояние
+
+Перевірте стан
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/8.jpg
-9. Добавьте изменения
+
+Додайте зміни
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/9.jpg
-10. Коммит изменений
+
+Коміт змін
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/10.jpg
-11. Первое изменение: Добавьте стандартные теги страницы
+
+Перше зміна: Додайте стандартні теги сторінки
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/11.jpg
-12. Добавьте это изменение
+
+Додайте цю зміну
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/12.jpg
-13. Коммит
+
+Коміт
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/3.jpg
-14. Добавьте второе изменение
+
+Додайте другу зміну
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/14.jpg
-15. Сделайте коммит второго изменения
+
+Зробіть коміт другої зміни
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/15.jpg
-16. История
+
+Історія
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/16.jpg
-17. Однострочная история
+
+Однорядкова історія
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/17.jpg
-18. Контроль отображения записей
+
+Контроль відображення записів
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/18.jpg
-19. Изощряемся
+
+Вдосконалення
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/19.jpg
-20.Конечный формат лога
+
+Кінцевий формат журналу
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/20.jpg
-21. Получите хеши предыдущих коммитов
+
+Отримання хешів попередніх комітів
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/21.jpg
-22. Получите хеши предыдущих коммитов
+
+Отримання хешів попередніх комітів
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/22.jpg
-23. Вернитесь к последней версии в ветке main
+
+Повернення до останньої версії в гілці main
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/23.jpg
-24. Создайте тег первой версии
+
+Створення тегу першої версії
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/24.jpg
-25. Теги для предыдущих версий
+
+Теги для попередніх версій
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/25.jpg
-26. Теги для предыдущих версий
+
+Теги для попередніх версій
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/26.jpg
-27. Переключение по имени тега
+
+Перемикання за іменем тегу
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/27.jpg
-28. Просмотр тегов с помощью команды tag
+
+Перегляд тегів за допомогою команди tag
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/28.jpg
-29. Просмотр Тегов в логах
+
+Перегляд тегів у журналі
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/29.jpg
-30. Отмена локальных изменений (до индексации)
+
+Скасування локальних змін (до індексації)
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/30.jpg
-31. Отмена проиндексированных изменений (перед коммитом)
+
+Скасування проіндексованих змін (перед комітом)
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/31.jpg
-32. Отмена коммитов
+
+Скасування комітів
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/32.jpg
-33. Удаление коммитов из ветки
+
+Видалення комітів з гілки
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/33.jpg
-34. Удаление тега oops
+
+Видалення тегу oops
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/34.jpg
-35. Внесение изменений в коммиты
+
+Внесення змін до комітів
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/35.jpg
-36. Создание ветки
+
+Створення гілки
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/36.jpg
-37.  Переключение веток
+
+Перемикання гілок
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/37.jpg
-38. Перемещение файлов
+
+Переміщення файлів
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/38.jpg
-39. Изменения в ветке main
+
+Зміни в гілці main
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/39.jpg
-40. Просмотр отличающихся веток
+
+Перегляд відмінностей між гілками
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/40.jpg
-41. Слияние
+
+Злиття
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/41.jpg
-42. Создание конфликта
+
+Створення конфлікту
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/42.jpg
-43. Разрешение конфликтов
+
+Вирішення конфліктів
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/43.jpg
-44.  Сброс ветки style
+
+Скидання гілки style
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/44.jpg
-45. Перебазирование
+
+Перебазування
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/45.jpg
-46. Слияние в ветку main
+
+Злиття у гілку main
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/46.jpg
-47. Клонирование репозиториев
+
+Клонування репозиторіїв
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/47.jpg
-48. Просмотр клонированного репозитория
+
+Перегляд клонованого репозиторію
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/48.jpg
-49. Что такое origin?
+
+Що таке origin?
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/49.jpg
-50. Удаленные ветки
+
+Віддалені гілки
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/50.jpg
-51. Изменение оригинального репозитория
+
+Зміна оригінального репозиторію
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/51.jpg
-52. Подтягивание изменений
+
+Підтягування змін
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/52.jpg
-53. Слияние подтянутых изменений
+
+Злиття підтягнутих змін
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/53.jpg
-54. Добавление ветки наблюдения
+
+Додавання гілки для спостереження
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/54.jpg
-55. Чистые репозитории
+
+Чисті репозиторії
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/55.jpg
-56. Добавление удаленного репозитория и  Отправка изменений
+
+Додавання віддаленого репозиторію і відправка змін
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/56.jpg
-57. Подтягивание общих изменений
+
+Підтягування загальних змін
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/57.jpg
