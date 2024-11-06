@@ -10,4 +10,4 @@ GPS Emulator -- https://github.com/Vlad0sNed/Labs/tree/Lab_5_Розробка-д
 
 Loran Emulator -- https://github.com/Vlad0sNed/Labs/tree/Lab_6_Розробка-додатку-для-візуалізації-вимірювань-LORAN Completed
 
-Дослідження фільра Калмана Completed
+Дослідження фільра Калмана --  Completed
