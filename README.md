@@ -1,3 +1,5 @@
+COMPLETED
+
 Налаштування імені та електронної пошти
 https://github.com/Vlad0sNed/Labs/blob/Lab_1_Git/Screenshots/1.jpg
 
