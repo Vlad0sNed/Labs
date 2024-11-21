@@ -4,7 +4,7 @@ Git -- https://github.com/Vlad0sNed/Labs/tree/Lab_1_Git Completed
 
 Docker -- https://github.com/Vlad0sNed/Labs/tree/Lab_2_Docker Completed
 
-Перетворення координат -- https://github.com/Vlad0sNed/Labs/tree/Lab_3_Реалізація-перетворень-між-системами-координат 50%
+Перетворення координат -- https://github.com/Vlad0sNed/Labs/tree/Lab_3_Реалізація-перетворень-між-системами-координат Completed
 
 GPS Emulator -- https://github.com/Vlad0sNed/Labs/tree/Lab_5_Розробка-додатку-для-візуалізації-вимірювань-GPS Completed
 
